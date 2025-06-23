@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}My Appointments{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2>📅 My Appointments</h2>
+        <a href="{% url 'appointment_create' %}" class="btn">➕ Book New Appointment</a>
+    </div>
+
+    {% if appointments %}
+        <div class="grid">
+            {% for appointment in appointments %}
+                <div class="appointment-item">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <div>
+                            <h3 style="color: #667eea; margin-bottom: 0.5rem;">
+                                📋 Appointment #{{ appointment.id }}
+                            </h3>
+                            <p><strong>Counselor:</strong> {{ appointment.counselor.get_full_name|default:appointment.counselor.username }}</p>
+                        </div>
+                        <span class="status-badge status-{{ appointment.status }}">
+                            {{ appointment.status|title }}
+                        </span>
+                    </div>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <p><strong>📅 Date:</strong> {{ appointment.date|date:"F j, Y" }}</p>
+                        <p><strong>🕐 Time:</strong> {{ appointment.time|time:"g:i A" }}</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <p><strong>💭 Reason:</strong></p>
+                        <p style="margin-top: 0.5rem;">{{ appointment.reason }}</p>
+                    </div>
+                    
+                    <div style="font-size: 0.875rem; color: #6c757d;">
+                        <p>Created: {{ appointment.created_at|date:"M j, Y g:i A" }}</p>
+                        {% if appointment.updated_at != appointment.created_at %}
+                            <p>Updated: {{ appointment.updated_at|date:"M j, Y g:i A" }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 3rem;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">📝</div>
+            <h3 style="color: #667eea; margin-bottom: 1rem;">No Appointments Yet</h3>
+            <p style="color: #6c757d; margin-bottom: 2rem;">
+                You haven't booked any appointments yet. Click the button below to schedule your first session.
+            </p>
+            <a href="{% url 'appointment_create' %}" class="btn">Book Your First Appointment</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 

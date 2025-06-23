@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome - SU Laboratory High School Entrance Exam Appointment System{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h1>CSU Laboratory High School Entrance Exam Appointment System</h1>
+    <p>Schedule your guidance counseling sessions with ease and convenience. Get the support you need when you need it.</p>
+    <div class="cta-buttons">
+        <a href="/create/" class="btn btn-primary">
+            📅 Book Your Appointment Now
+        </a>
+    </div>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Quick & Easy</h3>
+        <p>Book appointments in just a few clicks. No registration required for students.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Access the system from any device - desktop, tablet, or mobile phone.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <h3>24/7 Availability</h3>
+        <p>Book appointments anytime, anywhere. No need to wait for office hours.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Instant Confirmation</h3>
+        <p>Get immediate confirmation and status updates for your appointments.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Expert Counselors</h3>
+        <p>Connect with experienced guidance counselors who are here to help you succeed.</p>
+    </div>
+    
+    <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure & Private</h3>
+        <p>Your information is kept confidential and secure throughout the process.</p>
+    </div>
+</div>
+
+<div class="info-section">
+    <h2>How It Works</h2>
+    <div class="steps-grid">
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <h4>Choose Your Counselor</h4>
+            <p>Select from our qualified guidance counselors based on your needs.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <h4>Pick Date & Time</h4>
+            <p>Choose a convenient date and time slot that works for you.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <h4>Provide Details</h4>
+            <p>Share the reason for your appointment to help us prepare better.</p>
+        </div>
+        
+        <div class="step-card">
+            <div class="step-number">4</div>
+            <h4>Get Confirmation</h4>
+            <p>Receive instant confirmation and await your counseling session.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        padding: 4rem 2rem;
+        text-align: center;
+        margin-bottom: 4rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-section h1 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-section p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        font-size: 1.1rem;
+        padding: 1rem 2rem;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+        color: #667eea;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .feature-card p {
+        color: #6c757d;
+        line-height: 1.6;
+    }
+
+    .info-section {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .info-section h2 {
+        color: #667eea;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .step-card {
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto 1rem;
+    }
+
+    .step-card h4 {
+        color: #333;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .step-card p {
+        color: #6c757d;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 2rem 1rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2rem;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+        }
+
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .steps-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .info-section {
+            padding: 2rem 1rem;
+        }
+    }
+</style>
+{% endblock %} 
