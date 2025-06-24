@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Logged Out - Guidance Portal{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 500px; margin: 0 auto; text-align: center;">
+    <div style="font-size: 4rem; margin-bottom: 1rem;">👋</div>
+    <h2 style="color: #667eea; margin-bottom: 1rem;">Successfully Logged Out</h2>
+    
+    <div style="background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+        <p style="color: #155724; font-size: 1.1rem;">
+            You have been successfully logged out of the Guidance Portal.
+        </p>
+    </div>
+
+    <div style="background: #f8f9fa; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+        <h3 style="color: #667eea; margin-bottom: 1rem;">🔒 Security Notice</h3>
+        <div style="text-align: left; font-size: 0.9rem; color: #6c757d;">
+            <p style="margin-bottom: 0.5rem;">• Your session has been securely terminated</p>
+            <p style="margin-bottom: 0.5rem;">• All sensitive data has been cleared from this browser</p>
+            <p>• For additional security, consider closing your browser window</p>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/login/" class="btn">
+            🔐 Login Again
+        </a>
+        <a href="/" class="btn btn-secondary">
+            🏠 Back to Home
+        </a>
+    </div>
+
+    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e9ecef;">
+        <p style="color: #6c757d; font-size: 0.9rem;">
+            Need to book an appointment? 
+            <a href="/create/" style="color: #667eea;">Click here</a> to schedule a session.
+        </p>
+    </div>
+</div>
+{% endblock %} 
