@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Set Slot Limit{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 500px; margin: 2rem auto;">
+    <h2 style="color: #667eea; text-align: center;">Slot and Date Limit</h2>
+    
+    {% if error_message %}
+    <div style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #f5c6cb;">
+        <strong>Error:</strong> {{ error_message }}
+    </div>
+    {% endif %}
+    
+    <form method="post" style="margin-top: 2rem;" id="slot-limit-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="slot_limit">Slot Available</label>
+            <input type="number" name="slot_limit" id="slot_limit" class="form-control" 
+                   min="0" max="1000" step="1" value="{{ current_limit }}" required>
+            <small style="color: #6c757d; margin-top: 0.5rem; display: block;">
+                Enter a value between 0 and 1000 (or more if needed). 0 = No slots available.
+            </small>
+            <div id="slot-limit-error" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.5rem; display: none;"></div>
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date</label>
+            <input type="date" name="end_date" id="end_date" class="form-control" value="{{ end_date }}" min="{{ today|date:'Y-m-d' }}">
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary" id="save-btn">Save</button>
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+    {% if start_date and end_date %}
+    <div style="margin-top: 1rem; text-align: center; color: #667eea;">
+        <strong>Current Range:</strong> {{ start_date }} to {{ end_date }}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slotLimitInput = document.getElementById('slot_limit');
+    const slotLimitError = document.getElementById('slot-limit-error');
+    const saveBtn = document.getElementById('save-btn');
+    const form = document.getElementById('slot-limit-form');
+
+    function validateSlotLimit() {
+        const value = parseInt(slotLimitInput.value);
+        const isValid = !isNaN(value) && value >= 0 && value <= 1000;
+        
+        if (!isValid) {
+            slotLimitError.textContent = 'Slot limit must be between 0 and 1000.';
+            slotLimitError.style.display = 'block';
+            slotLimitInput.style.borderColor = '#dc3545';
+            saveBtn.disabled = true;
+        } else {
+            slotLimitError.style.display = 'none';
+            slotLimitInput.style.borderColor = '#e9ecef';
+            saveBtn.disabled = false;
+        }
+        
+        return isValid;
+    }
+
+    slotLimitInput.addEventListener('input', validateSlotLimit);
+    slotLimitInput.addEventListener('blur', validateSlotLimit);
+
+    form.addEventListener('submit', function(e) {
+        if (!validateSlotLimit()) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Initial validation
+    validateSlotLimit();
+    
+    // Ensure current value is within valid range
+    const currentValue = parseInt(slotLimitInput.value);
+    if (isNaN(currentValue) || currentValue < 0 || currentValue > 1000) {
+        slotLimitInput.value = 0; // Default to 0 if invalid
+        validateSlotLimit();
+    }
+});
+</script>
+
+<style>
+.btn:disabled {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #ffffff !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+
+.btn:disabled:hover {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+</style>
+{% endblock %} 
